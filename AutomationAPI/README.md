@@ -1,7 +1,3 @@
-Claro! Aqui está a documentação revisada, com a seção de dependências formatada de acordo com suas instruções:
-
----
-
 # Documentação do Projeto de Automação de Testes
 
 ## Descrição do Projeto
@@ -61,8 +57,3 @@ Você pode clonar o repositório do projeto utilizando o seguinte comando:
 
 ```bash
 git clone https://github.com/Luanninha/Desafio-Accenture
-```
-
----
-
-Se precisar de mais alguma coisa ou tiver outras solicitações, é só avisar!
