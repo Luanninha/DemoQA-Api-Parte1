@@ -56,4 +56,4 @@ Para executar os testes, siga os seguintes passos:
 Você pode clonar o repositório do projeto utilizando o seguinte comando:
 
 ```bash
-git clone https://github.com/Luanninha/Desafio-Accenture
+git clone https://github.com/Luanninha/DesafioAccenture-Parte1
