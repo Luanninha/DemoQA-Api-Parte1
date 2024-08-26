@@ -1,0 +1,32 @@
+
+@tag
+Feature: Automação de Teste de API com DemoQA
+  @tag1
+  Scenario: Fluxo completo de operações de API
+    Given que eu crio um novo usuário
+    When eu gero um token de acesso para o usuário criado
+    Then o token de acesso deve ser válido
+
+    When eu confirmo a autorização do usuário com o token gerado
+    Then a autorização deve ser confirmada
+
+    When eu solicito a lista de livros disponíveis
+    Then a lista de livros deve ser exibida
+
+    When eu realizo o aluguel dos livros disponíveis
+    Then os livros devem ser alugados com sucesso
+
+    When eu solicito a lista de livros escolhidos pelo usuário
+    Then a lista de livros escolhidos deve ser exibida
+
+ 
+  @tag2
+  Scenario Outline: Title of your scenario outline
+    Given I want to write a step with <name>
+    When I check for the <value> in step
+    Then I verify the <status> in step
+
+    Examples: 
+      | name  | value | status  |
+      | name1 |     5 | success |
+      | name2 |     7 | Fail    |

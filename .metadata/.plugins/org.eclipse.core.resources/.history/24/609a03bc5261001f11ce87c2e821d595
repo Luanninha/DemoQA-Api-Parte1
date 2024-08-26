@@ -1,0 +1,124 @@
+package AutomationDemoQA;
+
+import static io.restassured.RestAssured.given;
+
+
+import org.junit.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.http.Method;
+import io.restassured.response.Response;
+
+public class AutomationDemoQA {
+
+	
+	private Response response;
+    private String token;
+    private String userID;
+
+    /**
+     * Método para criar um usuário na API.
+     * Este método faz uma requisição POST para criar um novo usuário.
+     */
+    @Test
+    public void criarUsuario() {
+        response = given().log().all()
+                .contentType("application/json")
+                .body("{\r\n" +
+                        "  \"userName\": \"AlexandreMatheusAnthonyNascimento\",\r\n" +
+                        "  \"password\": \"Senha123!\"\r\n" +
+                        "}")
+                .when()
+                .post("https://demoqa.com/Account/v1/User")
+                .then().log().all()
+                .extract().response();
+        
+        userID = response.jsonPath().getString("userID");
+        System.out.println("User ID: " + userID);
+    }
+
+    /**
+     * Método para gerar um token de acesso para o usuário criado.
+     * Este método faz uma requisição POST para gerar um token de acesso.
+     */
+    @Test
+    public void gerarTokenAcesso() {
+        response = given().log().all()
+                .contentType("application/json")
+                .body("{\r\n" +
+                        "  \"userName\": \"AlexandreMatheusAnthonyNascimento\",\r\n" +
+                        "  \"password\": \"Senha123!\"\r\n" +
+                        "}")
+                .when()
+                .post("https://demoqa.com/Account/v1/GenerateToken")
+                .then().log().all()
+                .extract().response();
+        
+        token = response.jsonPath().getString("token");
+        System.out.println("Token: " + token);
+    }
+
+    /**
+     * Método para confirmar a autorização do usuário utilizando o token gerado.
+     * Este método faz uma requisição POST para verificar se o usuário está autorizado.
+     */
+    @Test
+    public void confirmarAutorizacao() {
+        response = given().log().all()
+                .contentType("application/json")
+                .header("Authorization", "Bearer " + token)
+                .when()
+                .post("https://demoqa.com/Account/v1/Authorized")
+                .then().log().all()
+                .extract().response();
+        
+        System.out.println("Autorização Confirmada: " + (response.statusCode() == 200));
+    }
+
+    /**
+     * Método para listar todos os livros disponíveis na API.
+     * Este método faz uma requisição GET para listar todos os livros.
+     */
+    @Test
+    public void listarLivros() {
+        response = given().log().all()
+                .when()
+                .get("https://demoqa.com/Bookstore/v1/Books")
+                .then().log().all()
+                .extract().response();
+        
+        System.out.println("Lista de Livros: " + response.asString());
+    }
+
+    /**
+     * Método para alugar livros na API.
+     * Este método faz uma requisição GET para listar todos os livros.
+     */
+    @Test
+    public void alugarLivros() {
+        response = given().log().all()
+                .when()
+                .get("https://demoqa.com/Bookstore/v1/Books")
+                .then().log().all()
+                .extract().response();
+        
+        System.out.println("Livros Alugados: " + response.asString());
+    }
+
+    /**
+     * Método para listar os livros escolhidos pelo usuário.
+     * Este método faz uma requisição GET para listar os livros escolhidos por um usuário específico.
+     */
+    @Test
+    public void listarUsuarioLivrosEscolhidos() {
+        response = given().log().all()
+                .contentType("application/json")
+                .header("Authorization", "Bearer " + token)
+                .when()
+                .get("https://demoqa.com/Account/v1/User/" + userID)
+                .then().log().all()
+                .extract().response();
+        
+        System.out.println("Livros Escolhidos pelo Usuário: " + response.asString());
+    }
+}

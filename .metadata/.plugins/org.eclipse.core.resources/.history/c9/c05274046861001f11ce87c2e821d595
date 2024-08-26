@@ -1,0 +1,81 @@
+package Methods;
+
+import static io.restassured.RestAssured.given;
+
+import org.junit.Before;
+
+import io.restassured.response.Response;
+
+public class Test {
+
+	private Response response;
+	private String token;
+	private String userID;
+
+	
+	@Before
+	public void setup() {
+		criarUsuario();
+		gerarTokenAcesso();
+	}
+
+	// Este método faz uma requisição POST para criar um novo usuário na API.
+	public void criarUsuario() {
+		response = given().log().all().contentType("application/json")
+				.body("{\r\n" + "  \"userName\": \"AlexandreMatheusAnthonyNascimento\",\r\n"
+						+ "  \"password\": \"Senha123!\"\r\n" + "}")
+				.when().post("https://demoqa.com/Account/v1/User").then().log().all().extract().response();
+
+		userID = response.jsonPath().getString("userID");
+		System.out.println("User ID: " + userID);
+	}
+
+	// Este método faz uma requisição POST para gerar um token de acesso para o usuário criado.
+	public void gerarTokenAcesso() {
+		response = given().log().all().contentType("application/json")
+				.body("{\r\n" + "  \"userName\": \"AlexandreMatheusAnthonyNascimento\",\r\n"
+						+ "  \"password\": \"Senha123!\"\r\n" + "}")
+				.when().post("https://demoqa.com/Account/v1/GenerateToken").then().log().all().extract().response();
+
+		token = response.jsonPath().getString("token");
+		System.out.println("Token: " + token);
+	}
+
+	// Este método faz uma requisição POST para verificar se o usuário está autorizado com o token gerado.
+	@TestDemoQA
+	public void confirmarAutorizacao() {
+		response = given().log().all().contentType("application/json").header("Authorization", "Bearer " + token).when()
+				.post("https://demoqa.com/Account/v1/Authorized").then().log().all().extract().response();
+
+		System.out.println("Autorização Confirmada: " + (response.statusCode() == 200));
+	}
+
+	// Este método faz uma requisição GET para listar todos os livros disponíveis na API.
+	@TestDemoQA
+	public void listarLivros() {
+		response = given().log().all().when().get("https://demoqa.com/Bookstore/v1/Books").then().log().all().extract()
+				.response();
+
+		System.out.println("Lista de Livros: " + response.asString());
+	}
+
+	// Este método faria uma requisição para alugar livros; ajuste conforme necessário.
+		// Este método faz uma requisição GET para listar os livros escolhidos pelo usuário.
+	@TestDemoQA
+	public void alugarLivros() {
+	    // Você precisará especificar os detalhes corretos para alugar livros.
+	    String book1 = "ID_DO_LIVRO1";
+	    String book2 = "ID_DO_LIVRO2";
+	    String payload = String.format("{ \"userId\": \"%s\", \"collectionOfIsbns\": [{ \"isbn\": \"%s\" }, { \"isbn\": \"%s\" }] }", userID, book1, book2);
+
+	    response = given().log().all()
+	        .contentType("application/json")
+	        .header("Authorization", "Bearer " + token)
+	        .body(payload)
+	        .when().post("https://demoqa.com/Bookstore/v1/Books")
+	        .then().log().all().extract().response();
+
+	    System.out.println("Livros Alugados: " + response.asString());
+	}
+
+}
