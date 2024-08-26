@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="cucumber.eclipse.launching.localCucumberFeature">
-    <stringAttribute key="cucumber feature" value="C:/Users/luana/OneDrive/Documentos/QUALITY ASSURANCE/BACKEND/ACCENTURE/AutomationAPI/src/test/resources/Feature/AutomationDemoQA.feature"/>
+    <stringAttribute key="cucumber feature" value="C:\Users\luana\OneDrive\Documentos\QUALITY ASSURANCE\ACCENTURE\API\AutomationAPI\src\test\resources\Feature\AutomationDemoQA.feature"/>
     <stringAttribute key="glue path" value="classpath:"/>
     <booleanAttribute key="is html formatter?" value="false"/>
     <booleanAttribute key="is json formatter?" value="false"/>
@@ -10,12 +10,16 @@
     <booleanAttribute key="is progress formatter?" value="false"/>
     <booleanAttribute key="is rerun formatter" value="false"/>
     <booleanAttribute key="is usage formatter" value="false"/>
+    <booleanAttribute key="org.eclipse.debug.core.ATTR_FORCE_SYSTEM_CONSOLE_ENCODING" value="false"/>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
         <listEntry value="/AutomationAPI"/>
     </listAttribute>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
         <listEntry value="4"/>
     </listAttribute>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_ATTR_USE_ARGFILE" value="false"/>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_SHOW_CODEDETAILS_IN_EXCEPTION_MESSAGES" value="true"/>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_CLASSPATH_ONLY_JAR" value="false"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="AutomationAPI"/>
     <booleanAttribute key="pde.generated.config" value="true"/>
 </launchConfiguration>

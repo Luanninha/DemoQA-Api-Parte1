@@ -25,7 +25,7 @@ public class Metodos {
     // Cria um novo usuário na API.
     public void criarUsuario() {
         response = given().log().all().contentType("application/json")
-                .body("{\r\n" + "  \"userName\": \"AndreaElianeStellaMoreira\",\r\n"
+                .body("{\r\n" + "  \"userName\": \"AndreaGabrielaStellaMoreira\",\r\n"
                         + "  \"password\": \"Senha123!\"\r\n" + "}")
                 .when().post("https://demoqa.com/Account/v1/User").then().log().all().extract().response();
 
@@ -37,7 +37,7 @@ public class Metodos {
     // Gera um token de acesso para o usuário criado.
     public void gerarTokenAcesso() {
         response = given().log().all().contentType("application/json")
-                .body("{\r\n" + "  \"userName\": \"AndreaElianeStellaMoreira\",\r\n"
+                .body("{\r\n" + "  \"userName\": \"AndreaGabrielaStellaMoreira\",\r\n"
                         + "  \"password\": \"Senha123!\"\r\n" + "}")
                 .when().post("https://demoqa.com/Account/v1/GenerateToken").then().log().all().extract().response();
 
