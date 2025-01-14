@@ -2,7 +2,7 @@
 
 ## Descrição do Projeto
 
-Este projeto é uma automação de testes utilizando **RestAssured** e **Cucumber** com **Java 21**. O objetivo é garantir a qualidade das funcionalidades da aplicação através de testes automatizados de API. O projeto foi criado por **Luana** para a empresa **Accenture**.
+Este projeto é uma automação de testes utilizando **RestAssured** e **Cucumber** com **Java 21**. O objetivo é garantir a qualidade das funcionalidades da aplicação através de testes automatizados de API. O projeto foi criado por **Luana**.
 
 ## Passos dos Testes de API
 
